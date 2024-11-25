@@ -1,5 +1,7 @@
 package com.walking.intensive.chapter1.task2;
 
+import java.util.Arrays;
+
 /**
  * Реализуйте метод getFlatLocation(), который будет принимать параметрами следующие данные:
  * <ul>
@@ -34,11 +36,33 @@ package com.walking.intensive.chapter1.task2;
 public class Task2 {
     public static void main(String[] args) {
 //        Для собственных проверок можете делать любые изменения в этом методе
+        System.out.println(getFlatLocation(3, 3, 13));
     }
 
     static String getFlatLocation(int floorAmount, int entranceAmount, int flatNumber) {
-        //        Место для вашего кода
+        int[] values = {floorAmount, entranceAmount, flatNumber};
 
-        return null; // Заглушка. При реализации - удалить
+        boolean anyLessOrEqualsZero = Arrays.stream(values).anyMatch(v -> v <= 0);
+        if(anyLessOrEqualsZero) {
+            return "Некорректные входные данные";
+        }
+
+        int flatsAmount = floorAmount * entranceAmount * 4;
+        if (flatNumber > flatsAmount) {
+            return "Такой квартиры не существует";
+        }
+
+        int flatsInOneEntrance = flatsAmount / entranceAmount;
+
+        int entranceNumber = (flatNumber % flatsInOneEntrance == 0) ?
+                (flatNumber / flatsInOneEntrance) : (flatNumber / flatsInOneEntrance + 1);
+        System.out.println(entranceNumber);
+
+        int floorNumber = 0; //УДАЛИТЬ
+        //ДОДЕЛАТЬ НОМЕР ЭТАЖА и потом ЛЕВО-ПРАВО
+
+        String location = flatNumber + " кв - " + entranceNumber + " подъезд, " + floorNumber + " этаж";
+
+        return location;
     }
 }
