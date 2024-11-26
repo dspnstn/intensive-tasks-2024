@@ -21,14 +21,14 @@ public class Task1 {
 
     static String getAgeString(int age) {
 
-        if (age <= 0) {
+        if (age < 0) {
             return "Некорректный ввод";
         }
 
         int ageLastDigit = age % 10;
         int ageLastTwoDigits = age % 100;
 
-        String ageResult = "Bам " + age;
+        String ageResult = "Вам " + age;
 
         if (ageLastTwoDigits >= 11 && ageLastTwoDigits <= 14) {
             ageResult += " лет";
