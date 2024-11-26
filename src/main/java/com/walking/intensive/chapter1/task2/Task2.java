@@ -36,7 +36,7 @@ import java.util.Arrays;
 public class Task2 {
     public static void main(String[] args) {
 //        Для собственных проверок можете делать любые изменения в этом методе
-        System.out.println(getFlatLocation(3, 3, 13));
+        System.out.println(getFlatLocation(3, 3, 36));
     }
 
     static String getFlatLocation(int floorAmount, int entranceAmount, int flatNumber) {
@@ -56,10 +56,14 @@ public class Task2 {
 
         int entranceNumber = (flatNumber % flatsInOneEntrance == 0) ?
                 (flatNumber / flatsInOneEntrance) : (flatNumber / flatsInOneEntrance + 1);
-        System.out.println(entranceNumber);
+        System.out.println(entranceNumber); //УДАЛИТЬ
 
-        int floorNumber = 0; //УДАЛИТЬ
-        //ДОДЕЛАТЬ НОМЕР ЭТАЖА и потом ЛЕВО-ПРАВО
+        int floorNumber = ((flatNumber - flatsInOneEntrance * (entranceNumber - 1)) % 4 == 0) ?
+                ((flatNumber - flatsInOneEntrance * (entranceNumber - 1)) / 4) :
+                ((flatNumber - flatsInOneEntrance * (entranceNumber - 1)) / 4 + 1);
+        System.out.println(floorNumber); //УДАЛИТЬ
+
+        //РАССЧИТАТЬ ЛОКАЦИЮ ОТ ЛИФТА
 
         String location = flatNumber + " кв - " + entranceNumber + " подъезд, " + floorNumber + " этаж";
 
