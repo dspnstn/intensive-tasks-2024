@@ -34,7 +34,7 @@ package com.walking.intensive.chapter1.task2;
 public class Task2 {
     public static void main(String[] args) {
 //        Для собственных проверок можете делать любые изменения в этом методе
-        System.out.println(getFlatLocation(3, 3, 36));
+        System.out.println(getFlatLocation(2, 5, 15));
     }
 
     static String getFlatLocation(int floorAmount, int entranceAmount, int flatNumber) {
@@ -43,12 +43,11 @@ public class Task2 {
             return "Некорректные входные данные";
         }
 
-        int flatsAmount = floorAmount * entranceAmount * 4;
+        int flatsInOneEntrance = floorAmount * 4;
+        int flatsAmount = flatsInOneEntrance * entranceAmount;
         if (flatNumber > flatsAmount) {
             return "Такой квартиры не существует";
         }
-
-        int flatsInOneEntrance = flatsAmount / entranceAmount;
 
         int entranceNumber = (flatNumber % flatsInOneEntrance == 0) ?
                 (flatNumber / flatsInOneEntrance) : (flatNumber / flatsInOneEntrance + 1);
@@ -57,9 +56,20 @@ public class Task2 {
                 ((flatNumber - flatsInOneEntrance * (entranceNumber - 1)) / 4) :
                 ((flatNumber - flatsInOneEntrance * (entranceNumber - 1)) / 4 + 1);
 
-        //РАССЧИТАТЬ ЛОКАЦИЮ ОТ ЛИФТА
-
         String location = flatNumber + " кв - " + entranceNumber + " подъезд, " + floorNumber + " этаж";
+        switch (flatNumber % 4) {
+            case 1:
+                location += ", слева от лифта, влево";
+                break;
+            case 2:
+                location += ", слева от лифта, вправо";
+                break;
+            case 3:
+                location += ", справа от лифта, влево";
+                break;
+            case 0:
+                location += ", справа от лифта, вправо";
+        }
 
         return location;
     }
