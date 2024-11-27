@@ -1,7 +1,5 @@
 package com.walking.intensive.chapter1.task2;
 
-import java.util.Arrays;
-
 /**
  * Реализуйте метод getFlatLocation(), который будет принимать параметрами следующие данные:
  * <ul>
@@ -40,10 +38,8 @@ public class Task2 {
     }
 
     static String getFlatLocation(int floorAmount, int entranceAmount, int flatNumber) {
-        int[] values = {floorAmount, entranceAmount, flatNumber};
 
-        boolean anyLessOrEqualsZero = Arrays.stream(values).anyMatch(v -> v <= 0);
-        if(anyLessOrEqualsZero) {
+        if(floorAmount <= 0 || entranceAmount <= 0 || flatNumber <= 0) {
             return "Некорректные входные данные";
         }
 
@@ -56,12 +52,10 @@ public class Task2 {
 
         int entranceNumber = (flatNumber % flatsInOneEntrance == 0) ?
                 (flatNumber / flatsInOneEntrance) : (flatNumber / flatsInOneEntrance + 1);
-        System.out.println(entranceNumber); //УДАЛИТЬ
 
         int floorNumber = ((flatNumber - flatsInOneEntrance * (entranceNumber - 1)) % 4 == 0) ?
                 ((flatNumber - flatsInOneEntrance * (entranceNumber - 1)) / 4) :
                 ((flatNumber - flatsInOneEntrance * (entranceNumber - 1)) / 4 + 1);
-        System.out.println(floorNumber); //УДАЛИТЬ
 
         //РАССЧИТАТЬ ЛОКАЦИЮ ОТ ЛИФТА
 
