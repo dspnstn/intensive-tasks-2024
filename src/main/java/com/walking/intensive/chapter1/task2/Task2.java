@@ -42,7 +42,8 @@ public class Task2 {
             return "Некорректные входные данные";
         }
 
-        int flatsInOneEntrance = floorAmount * 4;
+        int flatsInOneFloorAmount = 4;
+        int flatsInOneEntrance = floorAmount * flatsInOneFloorAmount;
         int flatsAmount = flatsInOneEntrance * entranceAmount;
         if (flatNumber > flatsAmount) {
             return "Такой квартиры не существует";
@@ -52,11 +53,11 @@ public class Task2 {
                 (flatNumber / flatsInOneEntrance) : (flatNumber / flatsInOneEntrance + 1);
 
         int floorNumberHelper = flatNumber - flatsInOneEntrance * (entranceNumber - 1);
-        int floorNumber = (floorNumberHelper % 4 == 0) ?
-                (floorNumberHelper / 4) : (floorNumberHelper / 4 + 1);
+        int floorNumber = (floorNumberHelper % flatsInOneFloorAmount == 0) ?
+                (floorNumberHelper / flatsInOneFloorAmount) : (floorNumberHelper / flatsInOneFloorAmount + 1);
 
         String location = flatNumber + " кв - " + entranceNumber + " подъезд, " + floorNumber + " этаж";
-        switch (flatNumber % 4) {
+        switch (flatNumber % flatsInOneFloorAmount) {
             case 1:
                 location += ", слева от лифта, влево";
                 break;
