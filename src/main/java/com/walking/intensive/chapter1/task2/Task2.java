@@ -51,9 +51,9 @@ public class Task2 {
         int entranceNumber = (flatNumber % flatsInOneEntrance == 0) ?
                 (flatNumber / flatsInOneEntrance) : (flatNumber / flatsInOneEntrance + 1);
 
-        int floorNumber = ((flatNumber - flatsInOneEntrance * (entranceNumber - 1)) % 4 == 0) ?
-                ((flatNumber - flatsInOneEntrance * (entranceNumber - 1)) / 4) :
-                ((flatNumber - flatsInOneEntrance * (entranceNumber - 1)) / 4 + 1);
+        int floorNumberHelper = flatNumber - flatsInOneEntrance * (entranceNumber - 1);
+        int floorNumber = (floorNumberHelper % 4 == 0) ?
+                (floorNumberHelper / 4) : (floorNumberHelper / 4 + 1);
 
         String location = flatNumber + " кв - " + entranceNumber + " подъезд, " + floorNumber + " этаж";
         switch (flatNumber % 4) {
