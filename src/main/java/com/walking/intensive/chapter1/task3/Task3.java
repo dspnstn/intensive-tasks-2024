@@ -25,25 +25,18 @@ package com.walking.intensive.chapter1.task3;
  */
 public class Task3 {
     public static void main(String[] args) {
-        System.out.println(isLeap(1900)? "Високосный" : "Невисокосный");
+        System.out.println(isLeap(1604)? "Високосный" : "Невисокосный");
     }
 
     static boolean isLeap(int year) {
         if (year < 1) {
-            System.out.println("Некорректное значение");
             return false;
         }
 
-        if (year % 4 ==0) {
-            if (year % 100 == 0) {
-                if (year % 400 == 0) {
-                    return true;
-                }
-                return false;
-            }
-            return true;
-        }
+        boolean isMultipleOf4 = (year % 4 == 0);
+        boolean isMultipleOf100 = (year % 100 == 0);
+        boolean isMultipleOf400 = (year % 400 == 0);
 
-        return false;
+        return (isMultipleOf4 && isMultipleOf100) ? isMultipleOf400 : isMultipleOf4;
     }
 }
