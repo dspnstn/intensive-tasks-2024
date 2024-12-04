@@ -33,10 +33,6 @@ public class Task3 {
             return false;
         }
 
-        boolean isMultipleOf4 = (year % 4 == 0);
-        boolean isMultipleOf100 = (year % 100 == 0);
-        boolean isMultipleOf400 = (year % 400 == 0);
-
-        return (isMultipleOf4 && isMultipleOf100) ? isMultipleOf400 : isMultipleOf4;
+        return ((year % 4 == 0) && (year % 100 == 0)) ? (year % 400 == 0) : (year % 4 == 0);
     }
 }
