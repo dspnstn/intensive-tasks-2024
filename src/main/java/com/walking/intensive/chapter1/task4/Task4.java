@@ -64,8 +64,10 @@ public class Task4 {
 
         StringBuilder twoRoots = new StringBuilder();
 
-        return (firstRoot < secondRoot) ?
-                " Корни: " + twoRoots.append(firstRoot).append(";").append(secondRoot)
-                : " Корни: " + twoRoots.append(secondRoot).append(";").append(firstRoot);
+        if (firstRoot < secondRoot) {
+            return " Корни: " + twoRoots.append(firstRoot).append(";").append(secondRoot);
+        }
+
+        return " Корни: " + twoRoots.append(secondRoot).append(";").append(firstRoot);
     }
 }
