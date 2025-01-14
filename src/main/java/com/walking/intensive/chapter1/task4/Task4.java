@@ -33,48 +33,39 @@ public class Task4 {
 
     static String solveEquation(double a, double b, double c) {
         if (a == 0 && b == 0) {
-            return c == 0 ? "Бесконечное множество решений." : "Количество решений: 0.";
+            if (c == 0) {
+                return "Бесконечное множество решений.";
+            }
+            return "Количество решений: 0.";
         }
 
         if (a == 0) {
-            return "Количество решений: 1." + calculateLinearEquation(b, c);
+            return "Количество решений: 1. Корень: " + (-c / b);
         }
 
         if (b == 0 && c == 0) {
             return "Количество решений: 1. Корень: 0.0";
         }
 
-        double discriminant = calculateDiscriminant(a, b, c);
+        double discriminant = b * b - 4 * a * c;
 
-        return (discriminant > 0) ? "Количество решений: 2." + calculateTwoRoots(a, b, discriminant)
-                : discriminant == 0 ? "Количество решений: 1." + calculateOneRoot(a, b)
-                : "Количество решений: 0.";
-    }
+        if (discriminant > 0) {
+            return "Количество решений: 2." + calculateTwoRoots(a, b, discriminant);
+        } else if (discriminant == 0) {
+            return "Количество решений: 1. Корень: " + (-b / (2 * a));
+        }
 
-    static String calculateLinearEquation(double b, double c) {
-        return " Корень: " + (-c / b);
-    }
-
-    static double calculateDiscriminant(double a, double b, double c) {
-        return b * b - 4 * a * c;
-    }
-
-    static String calculateOneRoot(double a, double b) {
-        return " Корень: " + (-b / (2 * a));
+        return "Количество решений: 0.";
     }
 
     static String calculateTwoRoots(double a, double b, double discriminant) {
         double firstRoot = (-b + Math.sqrt(discriminant)) / (2 * a);
         double secondRoot = (-b - Math.sqrt(discriminant)) / (2 * a);
 
-        String twoRoots = "";
+        StringBuilder twoRoots = new StringBuilder();
 
-        if (firstRoot < secondRoot) {
-            twoRoots += firstRoot + ";" + secondRoot;
-        } else if (secondRoot < firstRoot) {
-            twoRoots += secondRoot + ";" + firstRoot;
-        }
-
-        return " Корни: " + twoRoots;
+        return (firstRoot < secondRoot) ?
+                " Корни: " + twoRoots.append(firstRoot).append(";").append(secondRoot)
+                : " Корни: " + twoRoots.append(secondRoot).append(";").append(firstRoot);
     }
 }
